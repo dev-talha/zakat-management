@@ -1,58 +1,84 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Central Zakat Management (CZM) Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+The Central Zakat Management Platform is a comprehensive, modern, and Shariah-compliant digital system built with Laravel 11. It aims to connect Zakat donors, volunteers, partner organizations, and beneficiaries in a transparent, efficient, and accountable way.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Multi-Role Authentication & Dashboard**: Custom dashboards for Super Admins, Zakat Officers, Partner Organizations, Volunteers, Donors, and Beneficiaries.
+- **Donor Portal**: Transparent Zakat calculator, online payment integration, and personal ledger.
+- **Beneficiary Management**: Shariah-compliant applicant tracking, verification workflows, and fund distribution records.
+- **Volunteer & Organization Network**: Robust onboarding, verification, and activity logging for on-ground volunteers and partner organizations.
+- **Superadmin Controls**: Deep control over user roles, activity logs, platform settings, and account impersonation for debugging and support.
+- **Dynamic Settings**: Manage Shariah rates (Nisab based on Gold/Silver), currency, and system UI settings easily from the admin panel.
+- **Responsive UI/UX**: Built with Bootstrap 5, featuring a beautiful glassmorphism design, dark mode by default, and fully responsive layouts.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠 Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Framework**: Laravel 11 (PHP 8.2+)
+- **Database**: MySQL 8.0
+- **Cache & Queue**: Redis
+- **Frontend**: Blade Templating, Bootstrap 5, Vanilla CSS
+- **Containerization**: Docker & Docker Compose
 
-## Learning Laravel
+## 💻 Developer Setup Guide (Local Development)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Prerequisites
+- Docker & Docker Compose
+- Node.js & NPM (If running without Docker)
+- Composer (If running without Docker)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Installation Steps (with Docker)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/dev-talha/zakat-management.git
+   cd zakat-management
+   ```
 
-## Agentic Development
+2. **Environment Setup:**
+   ```bash
+   cp .env.docker .env
+   # The default .env.docker is pre-configured with DB_HOST=db and QUEUE_CONNECTION=redis
+   ```
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+3. **Start Docker Containers:**
+   ```bash
+   docker-compose up -d --build
+   ```
+   *(Note: The `entrypoint.sh` inside the Docker image will automatically install Composer dependencies, NPM packages, run migrations, and seed the database if it is empty. It also fixes storage permissions!)*
 
-```bash
-composer require laravel/boost --dev
+4. **Access the Application:**
+   - Web App: `http://localhost:8080`
+   - phpMyAdmin: `http://localhost:8081`
 
-php artisan boost:install
-```
+## 🐳 Running via Portainer (Production/Staging)
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+The project is heavily optimized for easy deployment via Portainer:
+1. Go to **Stacks > Add Stack**.
+2. Select **Repository** and enter this GitHub URL.
+3. Keep the compose path as `docker-compose.yml`.
+4. Deploy! The custom `entrypoint.sh` will handle permissions, composer install, npm build, migrations, and database seeding automatically on the first run.
 
-## Contributing
+## 🧪 Quick-Test Accounts
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+To make testing easier, the login page features a **Quick-Test Accounts** section. Clicking any role will auto-fill the credentials.
+*(This feature can be toggled on/off by the Super Admin in `Settings > General Settings`).*
 
-## Code of Conduct
+- **Super Admin**: `admin@czm.bd` / `password`
+- **Zakat Officer**: `officer@czm.bd` / `password`
+- **Donor**: `donor@czm.bd` / `password`
+- **Organization**: `org@czm.bd` / `password`
+- **Volunteer**: `volunteer@czm.bd` / `password`
+- **Beneficiary**: `beneficiary@czm.bd` / `password`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🤝 Contribution Guidelines
 
-## Security Vulnerabilities
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📄 License
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
