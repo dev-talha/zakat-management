@@ -395,7 +395,6 @@
                 </li>
                 <li><a href="{{ route('public.calculator') }}" id="navCalc" class="{{ request()->is('zakat-calculator') ? 'active' : '' }}">Calculator</a></li>
                 <li><a href="{{ route('public.track') }}" id="navTrack" class="{{ request()->is('track*') ? 'active' : '' }}">Track</a></li>
-                <li><a href="{{ route('public.transparency') }}" id="navTransparency" class="{{ request()->is('transparency') ? 'active' : '' }}">Transparency</a></li>
                 <li><a href="{{ route('leaderboard') }}" id="navLeader" class="{{ request()->is('leaderboard') ? 'active' : '' }}">Leaderboard</a></li>
                 <li><a href="{{ route('public.contact') }}" id="navContact" class="{{ request()->is('contact') ? 'active' : '' }}">Contact</a></li>
             </ul>
@@ -486,6 +485,7 @@
                             <li><a href="{{ route('public.organizations') }}"><i class="bi bi-building-check me-2"></i>Organizations</a></li>
                             <li><a href="{{ route('public.volunteers') }}"><i class="bi bi-person-badge me-2"></i>Volunteers</a></li>
                             <li><a href="{{ route('leaderboard') }}"><i class="bi bi-trophy me-2"></i>Leaderboard</a></li>
+                            <li><a href="{{ route('public.transparency') }}"><i class="bi bi-bar-chart-fill me-2"></i>Transparency</a></li>
                             <li><a href="{{ route('public.contact') }}"><i class="bi bi-envelope me-2"></i>Contact</a></li>
                         </ul>
                     </div>
