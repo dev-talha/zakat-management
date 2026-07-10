@@ -44,6 +44,12 @@ echo "Database is ready!"
 echo "Running migrations..."
 php artisan migrate --force
 
+# Seed database if it's empty (check if users table is empty)
+if [ $(php artisan tinker --execute="echo \App\Models\User::count();" 2>/dev/null || echo "0") -eq 0 ]; then
+    echo "Database appears empty. Running seeders..."
+    php artisan db:seed --force
+fi
+
 # Install and build frontend assets if node_modules doesn't exist or build is empty
 if [ ! -d "node_modules" ] || [ ! -d "public/build" ]; then
     echo "node_modules/ or public/build/ not found. Installing NPM packages and building Vite assets..."
@@ -58,6 +64,11 @@ echo "Clearing application cache..."
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
+
+# Fix permissions for storage and cache
+echo "Setting permissions for storage and cache..."
+chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
 
 # Start Supervisord to manage processes
 echo "Starting Supervisord..."
