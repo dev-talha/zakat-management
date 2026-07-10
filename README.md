@@ -51,13 +51,29 @@ The Central Zakat Management Platform is a comprehensive, modern, and Shariah-co
    - Web App: `http://localhost:8080`
    - phpMyAdmin: `http://localhost:8081`
 
-## 🐳 Running via Portainer (Production/Staging)
+## 🐳 Step-by-Step Portainer Deployment Guide
 
-The project is heavily optimized for easy deployment via Portainer:
-1. Go to **Stacks > Add Stack**.
-2. Select **Repository** and enter this GitHub URL.
-3. Keep the compose path as `docker-compose.yml`.
-4. Deploy! The custom `entrypoint.sh` will handle permissions, composer install, npm build, migrations, and database seeding automatically on the first run.
+Deploying this project via Portainer is extremely easy as the Docker environment is fully automated.
+
+1. **Log in to Portainer** and navigate to your Environment (e.g., `local`).
+2. Go to **Stacks** from the left sidebar and click on **+ Add stack**.
+3. **Name your stack:** (e.g., `zakat-management`).
+4. **Select Build Method:** Choose **Repository** (Git).
+5. **Repository URL:** Enter `https://github.com/dev-talha/zakat-management.git`.
+6. **Repository reference:** Keep it as `refs/heads/main` (or your preferred branch).
+7. **Compose path:** Keep the default `docker-compose.yml`.
+8. *(Optional)* **Environment Variables:** You can set custom `.env` variables here (like `APP_URL`, `DB_PASSWORD`). If you don't, the system will automatically use the pre-configured `.env.docker`.
+9. Scroll down and click **Deploy the stack**.
+
+**What happens next?**
+Portainer will download the repository and start building the Docker image. Once the containers start, the automated `entrypoint.sh` script takes over and does the following:
+- Installs all PHP dependencies (`composer install`).
+- Installs Node modules and compiles frontend assets (`npm install && npm run build`).
+- Fixes folder permissions for `storage` and `bootstrap/cache`.
+- Runs Laravel database migrations.
+- Seeds the database with demo data (if the database is completely empty).
+
+*This initial setup process might take 2-4 minutes depending on your server's speed. After it finishes, your application will be accessible at `http://your-server-ip:8080`!*
 
 ## 🧪 Quick-Test Accounts
 
