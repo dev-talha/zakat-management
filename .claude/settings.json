@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"http://localhost:8080/donor/register\" -o /tmp/final.html -w \"HTTP: %{http_code}\\\\n\")",
+      "Bash(python -c \"import sys,json; r=json.load\\(sys.stdin\\)['result']; print\\('status:', r['status']\\); print\\('block :', int\\(r['blockNumber'],16\\)\\); print\\('logs  :', len\\(r['logs']\\)\\); print\\('log topic0:', r['logs'][0]['topics'][0] if r['logs'] else 'none'\\); print\\('log data len:', len\\(r['logs'][0]['data']\\) if r['logs'] else 0\\)\")"
+    ]
+  }
+}

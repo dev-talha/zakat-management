@@ -1,0 +1,69 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zakat-app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+      - redis
+    networks:
+      - zakat-network
+
+  db:
+    image: mysql:8.0
+    container_name: zakat-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: zakat
+      MYSQL_USER: zakat
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3307:3306"
+    volumes:
+      - zakat-db-data:/var/lib/mysql
+    networks:
+      - zakat-network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: zakat-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - zakat-network
+
+  redis:
+    image: redis:8
+    container_name: zakat-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    volumes:
+      - zakat-redis-data:/data
+    networks:
+      - zakat-network
+
+networks:
+  zakat-network:
+    driver: bridge
+
+volumes:
+  zakat-db-data:
+    driver: local
+  zakat-redis-data:
+    driver: local

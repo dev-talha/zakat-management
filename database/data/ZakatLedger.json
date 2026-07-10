@@ -1,0 +1,101 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "transactionId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "recordHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "TransactionRecorded",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "transactionId",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "recordHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "recordTransaction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalRecords",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080604052348015600e575f80fd5b505f80546001600160a01b0319163317905561028c8061002d5f395ff3fe608060405234801561000f575f80fd5b506004361061003f575f3560e01c8063125f8974146100435780637c144fb41461005f5780638da5cb5b14610074575b5f80fd5b61004c60015481565b6040519081526020015b60405180910390f35b61007261006d366004610145565b61009e565b005b5f54610086906001600160a01b031681565b6040516001600160a01b039091168152602001610056565b6001805f8282546100af91906101c6565b90915550506040517fadfdd92450d4acbdd0950897b079a1c743dc6afdf2c65e27b31f6d2922f67135906100f0908890889088908890889088904290610213565b60405180910390a1505050505050565b5f8083601f840112610110575f80fd5b50813567ffffffffffffffff811115610127575f80fd5b60208301915083602082850101111561013e575f80fd5b9250929050565b5f805f805f806080878903121561015a575f80fd5b863567ffffffffffffffff811115610170575f80fd5b61017c89828a01610100565b90975095505060208701359350604087013567ffffffffffffffff8111156101a2575f80fd5b6101ae89828a01610100565b979a9699509497949695606090950135949350505050565b808201808211156101e557634e487b7160e01b5f52601160045260245ffd5b92915050565b81835281816020850137505f828201602090810191909152601f909101601f19169091010190565b60a081525f61022660a08301898b6101eb565b876020840152828103604084015261023f8187896101eb565b60608401959095525050608001529594505050505056fea2646970667358221220fa2320604cbc827802582cba45a3561fde31ebfb23e1925b4dee88354141699764736f6c634300081a0033"
+}

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /tmp)",
+      "Bash(python -c ' *)",
+      "Bash(find resources/views -maxdepth 2 -type d)",
+      "Bash(find resources/views -type f \\\\\\( -iname \"*apply*\" -o -iname \"*volunteer*\" -o -iname \"*organization*\" -o -iname \"*donor*\" -o -iname \"*register*\" \\\\\\))",
+      "Bash(grep -rn 'districts = \\\\[\\\\|divisions = \\\\[\\\\|$districts\\\\|$divisions' resources/views/public/)",
+      "Bash(grep -n 'foreach\\\\|$d\\\\b\\\\|districtList\\\\|$districts\\\\|View::share\\\\|composer' resources/views/public/beneficiary/register.blade.php)",
+      "Bash(mkdir -p database/data)",
+      "Bash(cp /tmp/bd.json database/data/bd-geo.json)",
+      "Bash(curl -s \"http://localhost:8080/geo/divisions\")",
+      "Bash(grep -nA6 \"fillable\" app/Models/BeneficiaryHousehold.php)",
+      "Bash(docker exec *)",
+      "Read(//tmp/**)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "Bash(python -c \"import sys,json; [print\\(' -',x['name_en'],'/',x['name_bn']\\) for x in json.load\\(sys.stdin\\)]\")",
+      "WebSearch",
+      "WebFetch(domain:oldweb.lged.gov.bd)",
+      "Bash(docker exec zakat-db mysql -uzakat -psecret zakat -N -e \" *)"
+    ]
+  }
+}
